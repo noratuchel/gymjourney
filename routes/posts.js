@@ -3,9 +3,11 @@ const router = express.Router();
 
 const Posts = require("../models/posts.js");
 const postservices = require("../services/posts.js");
+const authorization = require("../middlewares/auth.js");
+const adminauth = require("../middlewares/admin.js");
 
 // Alle Post ausgeben  gymjourney.de/v1/posts/ (Route müsste Admin geschützt sein)
-router.get("/", async (req, res) => {
+router.get("/", adminauth.checkLoggedInIsAdmin, async (req, res) => {
   try {
     const posts = await postservices.getAll();
     res.status(200).json({ posts: posts });
@@ -15,7 +17,7 @@ router.get("/", async (req, res) => {
 });
 
 // Einen Post anhand PostID ausgeben   gymjourney.de/v1/posts/3
-router.get("/:id", async (req, res) => {
+router.get("/:id", authorization.checkLoggedIn, async (req, res) => {
   try {
     const {
       params: { id },
@@ -34,8 +36,8 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// Post erstellen durch Admin (ADMIN GESCHÜTZT)
-router.post("/new", async (req, res) => {
+// Post erstellen durch User
+router.post("/new", authorization.checkLoggedIn, async (req, res) => {
   try {
     const newPost = await postservices.create(req.body); // Speichere das spezifische Objekt in posts ab
     res.status(201).json({ post: newPost });
@@ -45,7 +47,7 @@ router.post("/new", async (req, res) => {
 });
 
 // Post löschen
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", authorization.checkLoggedIn, async (req, res) => {
   try {
     const {
       params: { id },
@@ -59,7 +61,7 @@ router.delete("/:id", async (req, res) => {
 });
 
 // Post updaten/bearbeiten
-router.post("/update/:id", async (req, res) => {
+router.post("/update/:id", authorization.checkLoggedIn, async (req, res) => {
   try {
     // Finde bestehenden Post in Datenbank
     const {

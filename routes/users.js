@@ -3,6 +3,9 @@ const router = express.Router();
 
 const Users = require("../models/users.js");
 const userservices = require("../services/users.js");
+const authorization = require("../middlewares/auth.js");
+const adminauth = require("../middlewares/admin.js");
+const basicAuth = require("basic-auth");
 
 // Routes unterscheiden nach URL/Route -> HTTP Methode und finden dann ihre Funktion
 
@@ -10,7 +13,7 @@ const userservices = require("../services/users.js");
 // 1. Frontend schickt HTTP Request an Backend Route mit GET HTTP Methode
 // 2. Gucke in Datenbank, selektiere alle user
 // 3. Gebe alle User zurück und gebe HTTP Antwort mit Statuscode
-router.get("/", async (req, res) => {
+router.get("/", adminauth.checkLoggedInIsAdmin, async (req, res) => {
   try {
     const users = await userservices.getAll();
     res.status(200).json({ users: users });
@@ -20,7 +23,7 @@ router.get("/", async (req, res) => {
 });
 
 // Einen User anhand UserID ausgeben   gymjourney.de/v1/users/3
-router.get("/:id", async (req, res) => {
+router.get("/:id", authorization.checkLoggedIn, async (req, res) => {
   try {
     const {
       params: { id },
@@ -47,9 +50,9 @@ router.get("/:id", async (req, res) => {
 });
 
 // User erstellen durch Admin (ADMIN GESCHÜTZT)
-router.post("/new", async (req, res) => {
+router.post("/new", adminauth.checkLoggedInIsAdmin, async (req, res) => {
   try {
-    const newUser = await userservices.create(req.body); // Speichere das spezifische Objekt in users ab
+    const newUser = await userservices.create(req.head); // Speichere das spezifische Objekt in users ab
     res.status(201).json({
       user: {
         surname: newUser.surname,
@@ -83,8 +86,8 @@ router.post('/register', async (req, res) => {
   }
 }) */
 
-// User löschen
-router.delete("/:id", async (req, res) => {
+// User löschen (ADMIN GESCHÜTZT)
+router.delete("/:id", adminauth.checkLoggedInIsAdmin, async (req, res) => {
   try {
     const {
       params: { id },
@@ -97,7 +100,7 @@ router.delete("/:id", async (req, res) => {
 });
 
 // User updaten/bearbeiten
-router.post("/update/:id", async (req, res) => {
+router.post("/update/:id", authorization.checkLoggedIn, async (req, res) => {
   try {
     // Finde bestehenden User in Datenbank
     const {
@@ -122,7 +125,7 @@ router.post("/update/:id", async (req, res) => {
 });
 
 // Alle Posts eines Users
-router.get("/posts/:id", async (req, res) => {
+router.get("/posts/:id", authorization.checkLoggedIn, async (req, res) => {
   try {
     const {
       params: { id },

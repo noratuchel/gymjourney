@@ -3,11 +3,13 @@ const router = express.Router();
 
 const Forums = require("../models/forums.js");
 const forumservices = require("../services/forums.js");
+const authorization = require("../middlewares/auth.js");
+const adminauth = require("../middlewares/admin.js");
 
 // Routes unterscheiden nach URL/Route -> HTTP Methode und finden dann ihre Funktion
 
 // Alle Forums ausgeben  gymjourney.de/v1/forums/ (Route müsste Admin geschützt sein)
-router.get("/", async (req, res) => {
+router.get("/", adminauth.checkLoggedInIsAdmin, async (req, res) => {
   try {
     const forums = await forumservices.getAll();
     res.status(200).json({ forums: forums });
@@ -17,7 +19,7 @@ router.get("/", async (req, res) => {
 });
 
 // Ein Forum anhand ForumID ausgeben
-router.get("/:id", async (req, res) => {
+router.get("/:id", authorization.checkLoggedIn, async (req, res) => {
   try {
     const {
       params: { id },
@@ -31,7 +33,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // Forum erstellen durch Admin (ADMIN GESCHÜTZT)
-router.post("/new", async (req, res) => {
+router.post("/new", adminauth.checkLoggedInIsAdmin, async (req, res) => {
   try {
     const newForum = await forumservices.create(req.body);
     res.status(201).json({ forum: newForum });
@@ -40,8 +42,8 @@ router.post("/new", async (req, res) => {
   }
 });
 
-// Forums löschen
-router.delete("/:id", async (req, res) => {
+// Forums löschen (ADMIN GESCHÜTZT)
+router.delete("/:id", adminauth.checkLoggedInIsAdmin, async (req, res) => {
   try {
     const {
       params: { id },
@@ -54,8 +56,8 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// Forum updaten/bearbeiten
-router.post("/update/:id", async (req, res) => {
+// Forum updaten/bearbeiten (ADMIN GESCHÜTZT)
+router.post("/update/:id", adminauth.checkLoggedInIsAdmin, async (req, res) => {
   try {
     // Finde bestehenden Forums in Datenbank
     const {
@@ -78,7 +80,7 @@ router.post("/update/:id", async (req, res) => {
 // Welche Posts mit dieser Forumid
 // Alle ausgeben
 
-router.get("/posts/:id", async (req, res) => {
+router.get("/posts/:id", authorization.checkLoggedIn, async (req, res) => {
   try {
     const {
       params: { id },

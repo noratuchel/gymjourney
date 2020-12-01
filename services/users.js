@@ -37,6 +37,7 @@ async function create(user_object) {
   return await user.save();
 }
 
+// User können ihr Passwort und Role erstmal nicht ändern
 async function update(id, user_object) {
   // Finde bestehenden User in Datenbank
   let foundUser = await getById(id);
@@ -53,9 +54,6 @@ async function update(id, user_object) {
   if (user_object.email != null) {
     foundUser.email = user_object.email;
   }
-  if (user_object.role != null) {
-    foundUser.role = user_object.role;
-  }
   return await foundUser.save();
 }
 
@@ -66,7 +64,6 @@ async function remove(id) {
 async function getAllPosts(user_id) {
   return await Posts.find({ user_id: user_id }).exec();
 }
-// "sdasd", "sdsd"}
 async function login(email, password) {
   const user = await Users.findOne({ email: email });
   if (user) {
