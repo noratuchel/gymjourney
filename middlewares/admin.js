@@ -20,10 +20,6 @@ function checkLoggedInIsAdmin(req, res, next) {
       // CHECK ROLE === ADMIN
       // WENN ADMIN NEXT
       // WENN NICHT DANN 401 UNAUTHORIZED
-      console.log("TOKEN", decodedToken);
-      console.log("TOKEN USER", decodedToken.user);
-      console.log("TOKEN ADMIN CHECK", decodedToken.user === "administrator");
-
       decodedToken.role === "administrator"
         ? next()
         : res

@@ -50,9 +50,9 @@ router.get("/:id", authorization.checkLoggedIn, async (req, res) => {
 });
 
 // User erstellen durch Admin (ADMIN GESCHÜTZT)
-router.post("/new", adminauth.checkLoggedInIsAdmin, async (req, res) => {
+router.post("/new", async (req, res) => {
   try {
-    const newUser = await userservices.create(req.head); // Speichere das spezifische Objekt in users ab
+    const newUser = await userservices.create(req.body, "user"); // Speichere das spezifische Objekt in users ab
     res.status(201).json({
       user: {
         surname: newUser.surname,

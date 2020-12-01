@@ -23,7 +23,8 @@ async function getById(id) {
   return await Users.findById(id);
 }
 
-async function create(user_object) {
+// Default Value Parameter role=user
+async function create(user_object, role = "user") {
   // Erstelle ein spezifisches Dokument des User Models mit Daten aus HTTP Request Body
   const salt = await bcrypt.genSalt();
 
@@ -32,7 +33,7 @@ async function create(user_object) {
     firstname: user_object.firstname,
     email: user_object.email,
     password: bcrypt.hashSync(user_object.password, salt),
-    role: "user",
+    role: role,
   });
   return await user.save();
 }
@@ -66,6 +67,7 @@ async function getAllPosts(user_id) {
 }
 async function login(email, password) {
   const user = await Users.findOne({ email: email });
+
   if (user) {
     // Wenn user gefunden wurde
     const passwordMatching = bcrypt.compareSync(password, user.password);

@@ -3,7 +3,6 @@ const helmet = require("helmet"); // web security
 const cors = require("cors"); // cross origin resource sharing (header) erlauben
 const morgan = require("morgan"); // logging
 const mongoose = require("mongoose"); //interaktion mit db
-const bcrypt = require("bcryptjs"); //Verschlüsselung
 
 const usersservice = require("./services/users.js");
 
@@ -22,17 +21,16 @@ const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", async () => {
   const users = await usersservice.getAll();
-  console.log("USERS", users);
   if (users.length == 0) {
-    const salt = bcrypt.genSaltSync();
-
-    const defaultUser = await usersservice.create({
-      surname: "Mustermann",
-      firstname: "Max",
-      email: "maxmusterman@gmx.de",
-      password: bcrypt.hashSync("GymJourney123", salt),
-      role: "administrator",
-    });
+    const defaultUser = await usersservice.create(
+      {
+        surname: "Mustermann",
+        firstname: "Max",
+        email: "maxmusterman@gmx.de",
+        password: "GymJourney123",
+      },
+      "administrator"
+    );
     console.log("No user found, created default user.", defaultUser);
   }
   console.log("Connected to database");
