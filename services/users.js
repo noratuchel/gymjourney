@@ -1,3 +1,7 @@
+const bcrypt = require("bcryptjs");
+const jsonwebtoken = require("jsonwebtoken");
+require("dotenv").config();
+
 const Users = require("../models/users.js");
 const Posts = require("../models/posts.js");
 
@@ -8,6 +12,7 @@ module.exports = {
   update,
   remove,
   getAllPosts,
+  login,
 };
 
 async function getAll() {
@@ -20,11 +25,13 @@ async function getById(id) {
 
 async function create(user_object) {
   // Erstelle ein spezifisches Dokument des User Models mit Daten aus HTTP Request Body
+  const salt = await bcrypt.genSalt();
+
   const user = new Users({
     surname: user_object.surname,
     firstname: user_object.firstname,
     email: user_object.email,
-    password: user_object.password,
+    password: bcrypt.hashSync(user_object.password, salt),
     role: "user",
   });
   return await user.save();
@@ -58,4 +65,33 @@ async function remove(id) {
 
 async function getAllPosts(user_id) {
   return await Posts.find({ user_id: user_id }).exec();
+}
+// "sdasd", "sdsd"}
+async function login(email, password) {
+  const user = await Users.findOne({ email: email });
+  if (user) {
+    // Wenn user gefunden wurde
+    const passwordMatching = bcrypt.compareSync(password, user.password);
+    if (passwordMatching) {
+      // Wenn password stimmt
+      return [user, generiereJWT(user)];
+    }
+  }
+  return null;
+}
+
+function generiereJWT(user) {
+  const payload = {
+    userid: user._id,
+    surname: user.surname,
+    firstname: user.firstname,
+    email: user.email,
+    role: user.role,
+  };
+
+  const options = {
+    expiresIn: "7d",
+  };
+
+  return jsonwebtoken.sign(payload, process.env.SIGNATURE, options);
 }

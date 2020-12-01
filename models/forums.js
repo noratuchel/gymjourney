@@ -1,10 +1,10 @@
-const mongoose = require('mongoose'); // Zugriff auf MongoDB
+const mongoose = require("mongoose"); // Zugriff auf MongoDB
 
 const forumsSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 
-module.exports = mongoose.model('Forum', forumsSchema)
+module.exports = mongoose.model("Forum", forumsSchema);

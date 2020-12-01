@@ -1,13 +1,13 @@
-const mongoose = require('mongoose'); // Zugriff auf MongoDB
+const mongoose = require("mongoose"); // Zugriff auf MongoDB
 
 const postsSchema = new mongoose.Schema({
   content: {
     type: String,
-    required: true
+    required: true,
   },
   date: {
     type: String,
-    required: true
+    required: true,
   },
   photo: {
     type: String,
@@ -15,16 +15,16 @@ const postsSchema = new mongoose.Schema({
   },
   content_img: {
     type: String,
-    required: true
+    required: true,
   },
-  user_id:{
+  user_id: {
     type: String,
-    required: true
+    required: true,
   },
-  forum_id:{
+  forum_id: {
     type: String,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 
-module.exports = mongoose.model('Post', postsSchema)
+module.exports = mongoose.model("Post", postsSchema);

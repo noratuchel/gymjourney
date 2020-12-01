@@ -1,28 +1,30 @@
-const mongoose = require('mongoose'); // Zugriff auf MongoDB
+const mongoose = require("mongoose"); // Zugriff auf MongoDB
 
 /*   key: value
   key: { key: value }, */
 const usersSchema = new mongoose.Schema({
   surname: {
     type: String,
-    required: true
+    required: true,
   },
   firstname: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
     required: true,
+    unique: true,
+    lowercase: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
-  role:{
+  role: {
     type: String,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 
-module.exports = mongoose.model('User', usersSchema)
+module.exports = mongoose.model("User", usersSchema);
