@@ -9,11 +9,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.beuth-hochschule.de/s78740/we2-2020-backend-wise-noratuchel.git"
+    "url": "https://github.com/noratuchel/gymjourney.git"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.21.0",
     "bcryptjs": "^2.4.3",

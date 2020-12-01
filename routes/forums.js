@@ -66,4 +66,20 @@ router.post('/update/:id', async (req, res) => {
   }
 })
 
+// Alle Posts eines Forums
+// Get Methode
+// Forumid übergeben
+// Welche Posts mit dieser Forumid
+// Alle ausgeben
+
+router.get('/posts/:id', async (req, res) => {
+  try {
+    const { params: { id } } = req
+    const posts = await forumservices.getAllPosts(id)
+    res.status(200).json({ posts: posts })
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+})
+
 module.exports = router

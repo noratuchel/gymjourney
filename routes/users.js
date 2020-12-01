@@ -97,4 +97,15 @@ router.post('/update/:id', async (req, res) => {
 
 // User Login
 
+//Alle Posts eines Users
+router.get('/posts/:id', async (req, res) => {
+  try {
+    const { params: { id } } = req
+    const posts = await userservices.getAllPosts(id)
+    res.status(200).json({ posts: posts })
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+})
+
 module.exports = router
