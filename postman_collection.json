@@ -1,0 +1,493 @@
+{
+	"info": {
+		"_postman_id": "6c163186-6068-4eed-97d9-c09213b8894a",
+		"name": "gymjourney local",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "apirunning",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getallusers",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI1ZmM2OWZmNDFkN2I4MjE2ZWEzMGFhNzMiLCJzdXJuYW1lIjoiTXVzdGVybWFubiIsImZpcnN0bmFtZSI6Ik1heCIsImVtYWlsIjoibWF4bXVzdGVybWFuQGdteC5kZSIsInJvbGUiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjA2ODUyNjAxLCJleHAiOjE2MDc0NTc0MDF9.JY5NupJrw07soOUqtjOB34BlrPog8RC6HDDNuuXuiMs",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/v1/users/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getallpostsbyuserid",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI1ZmM2OWZmNDFkN2I4MjE2ZWEzMGFhNzMiLCJzdXJuYW1lIjoiTXVzdGVybWFubiIsImZpcnN0bmFtZSI6Ik1heCIsImVtYWlsIjoibWF4bXVzdGVybWFuQGdteC5kZSIsInJvbGUiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjA2ODUyNjAxLCJleHAiOjE2MDc0NTc0MDF9.JY5NupJrw07soOUqtjOB34BlrPog8RC6HDDNuuXuiMs",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/v1/users/posts/5fc57c8617170b293c6540fa",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"users",
+						"posts",
+						"5fc57c8617170b293c6540fa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getuserbyid",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/v1/users/5fc57be417170b293c6540ef",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"users",
+						"5fc57be417170b293c6540ef"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createuser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI1ZmM2OWZmNDFkN2I4MjE2ZWEzMGFhNzMiLCJzdXJuYW1lIjoiTXVzdGVybWFubiIsImZpcnN0bmFtZSI6Ik1heCIsImVtYWlsIjoibWF4bXVzdGVybWFuQGdteC5kZSIsInJvbGUiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjA2ODUyNjAxLCJleHAiOjE2MDc0NTc0MDF9.JY5NupJrw07soOUqtjOB34BlrPog8RC6HDDNuuXuiMs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \"surname\": \"tuchel\",\n    \"firstname\": \"aron\",\n    \"email\": \"aron.tuchel@gmx.de\",\n    \"password\": \"ABCD1234\"\n    \n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/v1/users/new",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"users",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "loginuser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \"email\": \"maxmusterman@gmx.de\",\n    \"password\": \"GymJourney123\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/v1/users/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateuser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI1ZmM2Nzc2NWE4NjdiMTBmOGU3ZDBmYTMiLCJzdXJuYW1lIjoidHVjaGVsIiwiZmlyc3RuYW1lIjoibm9yYSIsImVtYWlsIjoibm9yYS50dWNoZWxAZ214LmRlIiwicm9sZSI6ImFkbWluaXN0cmF0b3IiLCJpYXQiOjE2MDY4NDIyODEsImV4cCI6MTYwNzQ0NzA4MX0.j91pLYDnCqgmfrtUvECmqT_8T_Kxan0xCzCuoo7uN8o",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"surname\": \"Meiers\",\n\"email\": \"peter.meiers@gmx.de\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/v1/users/update/5fc57c8617170b293c6540fa",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"users",
+						"update",
+						"5fc57c8617170b293c6540fa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteuser",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/v1/users/5fc660b64cb8060a238a774a",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"users",
+						"5fc660b64cb8060a238a774a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getallforums",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/v1/forums/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"forums",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getforumbyid",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/v1/forums/5fc40f58dc35c2db9ab6b018",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"forums",
+						"5fc40f58dc35c2db9ab6b018"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getallpostsbyforumid",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/v1/forums/posts/5fc57c6217170b293c6540f5",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"forums",
+						"posts",
+						"5fc57c6217170b293c6540f5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createforum",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \"title\": \"Train\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/v1/forums/new",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"forums",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateforum",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"title\":\"Training\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/v1/forums/update/5fc582a8fc9e9f09a60ce86a",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"forums",
+						"update",
+						"5fc582a8fc9e9f09a60ce86a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteforum",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/v1/forums/5fc57c6217170b293c6540f5",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"forums",
+						"5fc57c6217170b293c6540f5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getallposts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/v1/posts/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"posts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getpostbyid",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/v1/posts/5fc57cac17170b293c65410b",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"posts",
+						"5fc57cac17170b293c65410b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createpost",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \"content\": \"Sport macht Spass!!\",\n    \"date\": \"2020-11-29T23:00:00.000+00:00\",\n    \"photo\": \"image1\",\n    \"content_img\": \"img2\",\n    \"user_id\": \"5fc57c8617170b293c6540fa\",\n    \"forum_id\": \"5fc57c6217170b293c6540f5\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/v1/posts/new",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"posts",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updatepost",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"content\": \"Sport ist mein Hobby\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/v1/posts/update/5fc5842384b12f0a005f9c8c",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"posts",
+						"update",
+						"5fc5842384b12f0a005f9c8c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletepost",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/v1/posts/5fc5842384b12f0a005f9c8c",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"posts",
+						"5fc5842384b12f0a005f9c8c"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

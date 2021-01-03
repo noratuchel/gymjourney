@@ -49,12 +49,22 @@ async function update(id, user_object) {
   if (user_object.surname != null) {
     foundUser.surname = user_object.surname;
   }
-  if (user_object.lastname != null) {
-    foundUser.lastname = user_object.lastname;
+  if (user_object.firstname != null) {
+    foundUser.firstname = user_object.firstname;
   }
   if (user_object.email != null) {
     foundUser.email = user_object.email;
   }
+
+  if (user_object.role != null) {
+    foundUser.role = user_object.role;
+  }
+
+  if (user_object.password != null) {
+    const salt = await bcrypt.genSalt();
+    foundUser.password = bcrypt.hashSync(user_object.password, salt);
+  }
+
   return await foundUser.save();
 }
 

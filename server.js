@@ -27,7 +27,7 @@ db.once("open", async () => {
         surname: "Mustermann",
         firstname: "Max",
         email: "maxmusterman@gmx.de",
-        password: "GymJourney123",
+        password: process.env.STANDARDPASSWORD,
       },
       "administrator"
     );
