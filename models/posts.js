@@ -25,6 +25,10 @@ const postsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  firstname: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Post", postsSchema);
