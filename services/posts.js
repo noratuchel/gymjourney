@@ -24,6 +24,7 @@ async function create(post_object) {
     content_img: post_object.content_img,
     user_id: post_object.user_id,
     forum_id: post_object.forum_id,
+    firstname: post_object.firstname,
   });
   return await post.save();
 }
