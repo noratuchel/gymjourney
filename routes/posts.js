@@ -7,7 +7,7 @@ const authorization = require("../middlewares/auth.js");
 const adminauth = require("../middlewares/admin.js");
 
 // Alle Post ausgeben  gymjourney.de/v1/posts/ (Route müsste Admin geschützt sein)
-router.get("/", adminauth.checkLoggedInIsAdmin, async (req, res) => {
+router.get("/", authorization.checkLoggedIn, async (req, res) => {
   try {
     const posts = await postservices.getAll();
     res.status(200).json({ posts: posts });
