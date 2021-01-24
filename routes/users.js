@@ -157,7 +157,7 @@ router.post("/login", async (req, res) => {
           email: loggedInUser[0].email,
           role: loggedInUser[0].role,
         },
-        token: loggedInUser[1],
+        token: `Bearer ${loggedInUser[1]}`,
       });
     } else {
       res.status(404).json({ message: "Login fehlgeschlagen." });
